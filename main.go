@@ -12,14 +12,13 @@ import (
 
 var (
 	ip          = flag.String("ip", "127.0.0.1:1883", "server IP")
-	connections = flag.Int("conn", 100, "number of tcp connections")
+	connections = flag.Int("conn", 10, "number of tcp connections")
 	per         = flag.Int("per", 2, "number of messages count per connection")
 	name        = flag.String("name", "local", "localName")
 )
 
 var f mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {
-	fmt.Printf("TOPIC: %s\n", msg.Topic())
-	fmt.Printf("MSG: %s\n", msg.Payload())
+	fmt.Println("Miss Sub Topic Message", msg.Topic(), msg.Payload())
 }
 
 func main() {
@@ -61,7 +60,7 @@ func main() {
 			mu.Lock()
 			statistic[message.Topic()] += 1
 			mu.Unlock()
-			fmt.Println(string(message.Payload()))
+			fmt.Println("Receiver sub message", "Topic -> ", message.Topic(), "Message -> ", string(message.Payload()))
 		}); token.Wait() && token.Error() != nil {
 			fmt.Println(token.Error())
 			i--

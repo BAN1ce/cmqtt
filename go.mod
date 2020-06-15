@@ -1,4 +1,4 @@
-module cmqtt
+module github.com/BAN1ce/cmqtt.git
 
 go 1.14
 
