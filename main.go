@@ -91,9 +91,9 @@ func main() {
 
 	time.Sleep(5 * time.Second)
 
-	t := time.NewTicker(5 * time.Second)
+	t := time.NewTicker(120 * time.Second)
 
-	sendTimer := time.NewTicker(30 * time.Second)
+	sendTimer := time.NewTicker(60 * time.Second)
 
 	for {
 		select {
@@ -110,9 +110,9 @@ func main() {
 		case <-sendTimer.C:
 
 			go func() {
+				timeStr := time.Now().Format("2006-01-02 15:04:05")
 				for i, c := range conns {
 					// 发布消息
-					timeStr := time.Now().Format("2006-01-02 15:04:05")
 					token := c.Publish(fmt.Sprintf(*name+"product/%d", i), 0, false, fmt.Sprintf("Hello World %d - %s", i, timeStr))
 					token.Wait()
 				}
