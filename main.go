@@ -51,6 +51,7 @@ func main() {
 		c := mqtt.NewClient(opts)
 		if token := c.Connect(); token.Wait() && token.Error() != nil {
 			i--
+			fmt.Println(token.Error())
 			continue
 		}
 
