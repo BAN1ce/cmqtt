@@ -60,7 +60,6 @@ func main() {
 			mu.Lock()
 			statistic[message.Topic()] += 1
 			mu.Unlock()
-			fmt.Println("Receiver sub message", "Topic -> ", message.Topic(), "Message -> ", string(message.Payload()))
 		}); token.Wait() && token.Error() != nil {
 			fmt.Println(token.Error())
 			i--
