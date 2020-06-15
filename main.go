@@ -44,6 +44,7 @@ func main() {
 
 		opts.SetKeepAlive(60 * time.Second)
 		opts.SetPingTimeout(10 * time.Second)
+		opts.SetConnectTimeout(5 * time.Second)
 
 		// 设置消息回调处理函数
 		opts.SetDefaultPublishHandler(f)
