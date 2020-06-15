@@ -40,7 +40,7 @@ func main() {
 
 	for i := 0; i < len(conns); i++ {
 
-		opts := mqtt.NewClientOptions().AddBroker(addr).SetUsername(fmt.Sprintf("%s_hello", *name) + string(i)).SetClientID(fmt.Sprintf("111%d", i))
+		opts := mqtt.NewClientOptions().AddBroker(addr).SetUsername(fmt.Sprintf("%s_hello", *name) + string(i)).SetClientID(fmt.Sprintf("%s111%d", *name, i))
 
 		opts.SetKeepAlive(60 * time.Second)
 		opts.SetPingTimeout(10 * time.Second)
